@@ -5,7 +5,7 @@ Implementation of the chunking process proposed in [paper](https://ieeexplore.ie
 
 
 # Numeric dummy example
-```python:
+```python
 import numpy as np
 from chunking_process import dynamic_chunk_segmentation
 
@@ -35,7 +35,7 @@ print("Feat-Dim: "+str(feat_dim))
 
 # Usage in PyTorch DataLoader: collate_fn
 Simply add the segmentation function as the collation function in torch.DataLoader object.
-```python:
+```python
 def collate_fn(batch):
     m = 50
     C = 15
