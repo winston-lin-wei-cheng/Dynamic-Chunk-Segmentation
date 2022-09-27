@@ -14,8 +14,8 @@ def dynamic_chunk_segmentation(Batch_data, m, C, n=1):
         Input: batch data list contains different length (time-dim) of 2D feature maps (i.e., 2D numpy matrix)
         Output: fixed 3D dimension numpy array with the shape= (batch-size*C, m, feat-dim)
     
-    ***Note*** This function can't process sequence length which less than the given m!
-               Please make sure all your input data's length are greater then the given m.
+    ***Note*** This function can't process sequence length that is less than the given m!
+               Please make sure all your input data's lengths are always greater then the given m.
     
     Args:
           Batch_data$ (list): list of different length 2D numpy array for batch training data
