@@ -13,7 +13,7 @@ from chunking_process import dynamic_chunk_segmentation
 batch_size = 64
 feat_dim = 768          # e.g., wav2vec, some Transformer-based pretrained deep features
 frame_hop_size = 0.02   # e.g., wav2vec uses 20ms as feature hop-size in the training setting
-time_range = np.random.uniform(low=3, high=15, size=batch_size) # data duration are bounded in 3-15 secs
+time_range = np.random.uniform(low=3, high=15, size=batch_size) # assume the data duration are bounded in 3-15 secs
 batch_data_to_train = []
 for i in range(batch_size):
     # 2D feat-map with shape= (num_frames, feat_dim)
@@ -40,9 +40,9 @@ def collate_fn(batch):
     m = 50
     C = 15
     n = 1
-    data, label = zip(*batch)
+    data, label = zip(*batch) # sentence-level data & label (e.g., emotion class/score, gender class, speakerID...etc)
     batch_chunk_data_to_train = dynamic_chunk_segmentation(Batch_data=data, m=m, C=C, n=n)
-    batch_chunk_label_to_train = np.repeat(np.array(label), C)
+    batch_chunk_label_to_train = np.repeat(np.array(label), C) # directly replicate the sentence-level label C times as chunk-level learning targets
     return torch.from_numpy(batch_chunk_data_to_train), torch.from_numpy(batch_chunk_label_to_train)
 
 
